@@ -15,9 +15,6 @@ pipeline {
                 python3 --version
                 pip install -r requirements.txt
                 '''
-                sh '''
-                echo "doing build stuff.."
-                '''
             }
         }
         stage('Test') {
@@ -25,6 +22,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 python3 fireApp.py
+                python3 fireApp.py --name=Washi
                 '''
             }
         }
