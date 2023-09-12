@@ -13,6 +13,7 @@ pipeline {
                 echo "Building.."
                 sh '''
                 python3 --version
+                pip install -r requirements.txt
                 '''
                 sh '''
                 echo "doing build stuff.."
@@ -23,7 +24,7 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                echo "doing test stuff.."
+                python3 fireApp.py
                 '''
             }
         }
