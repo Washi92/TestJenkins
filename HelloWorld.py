@@ -1,2 +1,2 @@
 
-print("From python script hello")
+print("From python script v2")
