@@ -7,6 +7,8 @@ pipeline {
         stage('Software Versions') {
             steps {
                 sh '''
+                uname -s
+                cat /etc/os-release
                 git --version
                 python3 --version
                 cmake --version    
@@ -37,12 +39,15 @@ pipeline {
                         echo "Building for Linux..."
                         // Linux build commands
                         sh '''
+                        uname -s
+                        cat /etc/os-release
                         python3 --version
                         cmake --version
                         ninja --version
                         g++ --version
                         which cmake
                         pwd
+                        ls -ltra
                         '''                
                     }
                 }
