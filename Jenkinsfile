@@ -60,8 +60,26 @@ pipeline {
                         '''                
                     }
                 }
+                stage('Deliver') {
+                    steps {
+                        echo "Deliver...."
+                        sh '''
+                        mv appMain ./appMainLinux
+                        ls -ltra
+                        '''  
+                        archiveArtifacts(allowEmptyArchive: true, artifacts: 'appMainLinux')
+                    }
+                }
+                stage('Test') {
+                    steps {
+                        echo "Testing Linux..."
+                        sh '''
+                        ./appMainLinux
+                        '''
+                    }
             }
         }
+            
         stage('Test') {
             steps {
                 echo "Testing.."
