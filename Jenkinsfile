@@ -1,19 +1,27 @@
 pipeline {
-    agent { 
-        node {
-            label 'docker-agent-python'
-            }
-      }
+    agent any
     triggers {
-      pollSCM '*/5 * * * *'
+      pollSCM '*/1000 * * * *'
     }
     stages {
+        stage('Software Versions') {
+            steps {
+                sh '''
+                git --version
+                python3 --version
+                cmake --version    
+                ls -ltra
+                '''
+            }
+        }
         stage('Build') {
             steps {
                 echo "Building.."
                 sh '''
-                python3 --version
-                pip install -r requirements.txt
+                mkdir build
+                cmake .
+                echo "cmake build"
+                cmake --build .
                 '''
             }
         }
@@ -21,17 +29,15 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                python3 fireApp.py
-                python3 fireApp.py --name=Washi
+                ./appMain
                 '''
             }
         }
         stage('Deliver') {
             steps {
                 echo "Deliver...."
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                archiveArtifacts(allowEmptyArchive: true, artifacts: 'appMain')
+
             }
         }
     }

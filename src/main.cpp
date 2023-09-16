@@ -2,7 +2,7 @@
 #include <api.h>
 #include <includeLib/functions.h>
 
-int  main() {
+int main() {
 	std::cout << "Main application!\n";
 	std::cout << "Calling API...\n";
 	print();
@@ -11,5 +11,5 @@ int  main() {
 	TOOLS::Student s("Shushana");
 	s.talk();
 	return 0;
-
 }
+
