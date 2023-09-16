@@ -27,11 +27,16 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Testing.."
+                sh '''
+                ./appMain
+                '''
             }
         }
         stage('Deliver') {
             steps {
                 echo "Deliver...."
+                archiveArtifacts(allowEmptyArchive: true, artifacts: 'appMain.exe')
+
             }
         }
     }
