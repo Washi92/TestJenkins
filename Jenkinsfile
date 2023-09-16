@@ -27,19 +27,25 @@ pipeline {
         }
         stage('Linux Build') {
             agent {
-                label docker-agen-cmake
+                node {
+                    label 'docker-agen-cmake'
+                }                
             }
-            steps {
-                echo "Building for Linux..."
-                // Linux build commands
-                sh '''
-                python3 --version
-                cmake --version
-                ninja --version
-                g++ --version
-                which cmake
-                pwd
-                '''                
+            stages {
+                stage('Check requirements'){
+                    steps {
+                        echo "Building for Linux..."
+                        // Linux build commands
+                        sh '''
+                        python3 --version
+                        cmake --version
+                        ninja --version
+                        g++ --version
+                        which cmake
+                        pwd
+                        '''                
+                    }
+                }
             }
         }
         stage('Test') {
