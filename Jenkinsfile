@@ -8,8 +8,7 @@ pipeline {
             steps {
                 sh '''
                 python3 --version
-                cmake --version
-                pip install -r requirements.txt
+                cmake --version               
                 '''
             }
         }
