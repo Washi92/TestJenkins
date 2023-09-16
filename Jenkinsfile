@@ -9,7 +9,8 @@ pipeline {
                 sh '''
                 git --version
                 python3 --version
-                cmake --version               
+                cmake --version    
+                ls -ltra
                 '''
             }
         }
