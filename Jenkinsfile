@@ -36,7 +36,7 @@ pipeline {
         stage('Deliver') {
             steps {
                 echo "Deliver...."
-                archiveArtifacts(allowEmptyArchive: true, artifacts: 'appMain.exe')
+                archiveArtifacts(allowEmptyArchive: true, artifacts: 'appMain')
 
             }
         }
