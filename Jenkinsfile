@@ -4,9 +4,10 @@ pipeline {
       pollSCM '*/1000 * * * *'
     }
     stages {
-        stage('Check-Deps') {
+        stage('Software Versions') {
             steps {
                 sh '''
+                git --version
                 python3 --version
                 cmake --version               
                 '''
