@@ -2,7 +2,7 @@
 #include <api.h>
 #include <includeLib/functions.h>
 
-void main() {
+int main() {
 	std::cout << "Main application!\n";
 	std::cout << "Calling API...\n";
 	print();
@@ -10,6 +10,6 @@ void main() {
 	std::cout << "Calling third Library...\n";
 	TOOLS::Student s("Shushana");
 	s.talk();
-
+	return 0;
 
 }
