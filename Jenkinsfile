@@ -16,7 +16,7 @@ pipeline {
                 '''
             }
         }
-        stage('Windows Build') {
+        stage('Main Build') {
             steps {
                 echo "Building.."
                 sh '''
@@ -35,9 +35,7 @@ pipeline {
             }
             stages {
                 stage('Check requirements'){
-                    steps {
-                        echo "Building for Linux..."
-                        // Linux build commands
+                    steps {                       
                         sh '''
                         uname -s
                         cat /etc/os-release
@@ -48,6 +46,17 @@ pipeline {
                         which cmake
                         pwd
                         ls -ltra
+                        '''                
+                    }
+                }
+                stage('Linux Build'){
+                    steps {
+                        echo "Building for Linux..."
+                        // Linux build commands
+                        sh '''
+                        cmake .
+                        echo "cmake build"
+                        cmake --build . --config RelWithDebInfo
                         '''                
                     }
                 }
